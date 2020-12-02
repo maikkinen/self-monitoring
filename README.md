@@ -1,3 +1,3 @@
 # Simple Self Monitoring WebApp
-Ths app helps you with tracking sleep duration and quality, time spent on excercising, and so on. 
-The application provides users an opportunity to report behavior daily, and to see trends on a weekly or monthly level.
+This app helps you to track sleep duration and quality, time spent on excercising, and so on. 
+It also provides users an opportunity to report behavior daily, and to see trends on a weekly or monthly level.
