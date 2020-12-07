@@ -1,11 +1,6 @@
 import { send } from '../deps.js';
 
-const log = async ({ request }, next) => {
-  console.log(request)
-  next();
-}
-
-const errorMiddleware = async (context, next) => {
+const errorMiddleware = async(context, next) => {
   try {
     await next();
   } catch (e) {
@@ -13,24 +8,24 @@ const errorMiddleware = async (context, next) => {
   }
 }
 
-const requestTimingMiddleware = async ({ request }, next) => {
+const requestTimingMiddleware = async({ request }, next) => {
   const start = Date.now();
   await next();
   const ms = Date.now() - start;
   console.log(`${request.method} ${request.url.pathname} - ${ms} ms`);
 }
 
-const serveStaticFilesMiddleware = async (context, next) => {
+const serveStaticFilesMiddleware = async(context, next) => {
   if (context.request.url.pathname.startsWith('/static')) {
     const path = context.request.url.pathname.substring(7);
-
+  
     await send(context, path, {
       root: `${Deno.cwd()}/static`
     });
-
+  
   } else {
     await next();
   }
 }
 
-export { log, errorMiddleware, requestTimingMiddleware, serveStaticFilesMiddleware };
+export { errorMiddleware, requestTimingMiddleware, serveStaticFilesMiddleware };

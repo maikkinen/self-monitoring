@@ -1,11 +1,12 @@
 import { Client } from "../deps.js";
+import { Pool } from "../deps.js";
 import { config } from "../config/config.js";
 
 const getClient = () => {
   return new Client(config.database);
 }
 
-const executeQuery = async(query, ...args) => {
+const executeQuery = async (query, ...args) => {
   const client = getClient();
   try {
     await client.connect();

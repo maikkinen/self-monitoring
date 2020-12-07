@@ -1,0 +1,33 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/greeting.ejs') %>
+<%- include('./partials/menu.ejs') %>
+<%- include('./partials/divider-dotted.ejs') %>
+<div style="display: flex; flex-direction: column;">
+
+<h3 style="margin-bottom: 5rem;">Evening Reflection</h3>
+<h5>Healthy Habits</h5>
+  <form method="POST" action="/tasks">
+    <span>
+      <label for="sleepDuration">Excercise & Sports today</label>
+      <input type="number" name="sportsDuration" />
+    </span>
+
+    <span>
+      <label for="sleepDuration">Time Spent Studying</label>
+      <input type="number" name="studyDuration" />
+    </span>
+
+    <span>
+      <label for="sleepDuration">Eating Quality</label>
+      <input type="number" name="eatingQuality" />
+    </span>
+
+    <%- include('./partials/moodmeter.ejs') %>
+    <hr style="border-top: 3px dotted #bbb;">
+    <%- include('./partials/date.ejs') %>
+
+    <input style="width:100%;" type="submit" value="Submit" />
+  </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>
