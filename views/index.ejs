@@ -1,48 +1,16 @@
 <%- include('./partials/header.ejs') %>
-<h1>Tasks!</h1>
-<%- include('./partials/switch.ejs') %>
-<form method="POST" action="/tasks">
-  <input type="text" name="name" />
-  <input type="submit" value="Add new!" />
-</form>
+<%- include('./partials/greeting.ejs') %>
+<%- include('./partials/menu.ejs') %>
+<%- include('./partials/divider-dotted.ejs') %>
+<p>
+  The application provides functionality for summarization of responses. 
+  Each user can view statistics of their reports on a weekly and monthly level. 
+  These statistics are as follows.
 
-<h3>Available tasks</h3>
-<ul>
-  <% tasks.forEach((task) => { %> <% if (!task.started_on) { %>
-  <li>
-    <%= task.name %>
-    <form method="POST" action="/tasks/<%= task.id %>/start">
-      <input type="hidden" name="name" value="<%= task.name %>" />
-      <input type="submit" value="Start task!" />
-    </form>
-  </li>
-  <% } %> <% }); %>
-</ul>
-
-<h3>In progress</h3>
-<ul>
-  <% tasks.forEach((task) => { %> <% if (task.started_on && !task.completed_on)
-  { %>
-  <li>
-    <%= task.name %>
-    <form method="POST" action="/tasks/<%= task.id %>/complete">
-      <input type="hidden" name="name" value="<%= task.name %>" />
-      <input type="submit" value="Complete task!" />
-    </form>
-  </li>
-  <% } %> <% }); %>
-</ul>
-
-<h3>Doned</h3>
-<h5>
-    <% if (average) { %>
-    Average completion time: <%= average %> seconds
-    <% } %>
-</h5>
-<ul>
-  <% tasks.forEach((task) => { %> <% if (task.completed_on) { %>
-  <li><%= task.name %> - I finished this ( <%= task.duration %> seconds )</li>
-  <% } %> <% }); %>
-</ul>
-
+    Average sleep duration
+    Average time spent on sports and exercise
+    Average time spent studying
+    Average sleep quality
+    Average generic mood
+</p>
 <%- include('./partials/footer.ejs') %>

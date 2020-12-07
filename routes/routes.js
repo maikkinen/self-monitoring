@@ -1,10 +1,14 @@
 import { Router } from "../deps.js";
-import { showTasks } from "./controllers/trackingController.js";
+import { showTasks, showMorningForm, showEveningForm } from "./controllers/trackingController.js";
 import * as trackingApi from "./apis/trackingApi.js";
 
 const router = new Router();
 
 router.get('/', showTasks);
+
+router.get('/morning', showMorningForm);
+router.get('/evening', showEveningForm);
+
 
 router.post('/tasks', trackingApi.addTask);
 router.post('/tasks/:id/start', trackingApi.startTask);

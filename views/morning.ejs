@@ -1,0 +1,32 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/greeting.ejs') %>
+<%- include('./partials/menu.ejs') %>
+<%- include('./partials/divider-dotted.ejs') %>
+<div style="display: flex; flex-direction: column; ">
+
+  <h3 style="margin-bottom: 5rem;">Starting the Day</h3>
+    <h5>Sleeping</h5>
+  <form method="POST" action="/tasks">
+    <span>
+      <label for="sleepDuration">How long did You sleep?</label>
+      <input type="number" name="sleepDuration" />
+    </span>
+
+    <span>
+      <label for="sleepDuration">Feeling on Sleep Quality</label>
+      <input type="number" name="sleepQuality" />
+    </span>
+
+    <%- include('./partials/moodmeter.ejs') %>
+    <hr style="border-top: 3px dotted #bbb;">
+    <%- include('./partials/date.ejs') %>
+
+    <input style="width:100%;" type="submit" value="Submit" />
+  </form>
+</div>
+
+
+  
+  
+
+<%- include('./partials/footer.ejs') %>

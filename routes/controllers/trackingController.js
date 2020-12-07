@@ -6,4 +6,12 @@ const showTasks = async ({ render }) => {
   render('index.ejs', { tasks: await getTasks(), average: await getAverage()}); // paa se tänne
 };
 
-export { showTasks };
+const showMorningForm  = ({ render }) => {
+  render('morning.ejs')
+}
+
+const showEveningForm  = ({ render }) => {
+  render('evening.ejs')
+}
+
+export { showTasks, showMorningForm, showEveningForm};
