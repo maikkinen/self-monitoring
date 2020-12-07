@@ -1,0 +1,22 @@
+GET http://localhost:7777/
+###
+
+GET http://localhost:7777/news/4 HTTP/1.1
+
+###
+
+POST http://localhost:7777/tasks/22/start HTTP/1.1
+
+
+###
+
+POST http://localhost:7777/tasks/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "be awesome and great"
+}
+
+
+###
+DELETE http://localhost:7777/api/news/1 HTTP/1.1
