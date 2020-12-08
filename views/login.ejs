@@ -1,0 +1,27 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/greeting.ejs') %>
+<%- include('./partials/menu.ejs') %>
+<%- include('./partials/divider-dotted.ejs') %>
+<div style="display: flex; flex-direction: column;">
+
+<h3 style="margin-bottom: 5rem;">Login</h3>
+  <form method="POST" action="/auth/login">
+    <span>
+      <label for="email">Email</label>
+      <input type="email" name="email" />
+    </span>
+
+    <span>
+      <label for="password">Password</label>
+      <input type="password" name="password" />
+    </span>
+    <input type="submit" value="Submit" />
+
+    <div style="display: flex; flex-direction: row;">
+      <h6 style="margin-right: 1rem;">Not signed up yet?</h6>
+      <a href="/auth/registration">Create new account</a>
+    </div>
+  </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>

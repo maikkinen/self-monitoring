@@ -1,0 +1,23 @@
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/greeting.ejs') %>
+<%- include('./partials/menu.ejs') %>
+<%- include('./partials/divider-dotted.ejs') %>
+<div style="display: flex; flex-direction: column;">
+
+<h3 style="margin-bottom: 5rem;">Register</h3>
+  <form method="POST" action="/auth/registration">
+    <span>
+      <label for="email">Email</label>
+      <input type="email" name="email" />
+    </span>
+    
+    <span>
+      <label for="password">Password</label>
+      <input type="password" name="password" />
+    </span>
+
+    <input type="submit" value="Submit" />
+  </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>

@@ -4,8 +4,9 @@
 <%- include('./partials/divider-dotted.ejs') %>
 <div style="display: flex; flex-direction: column;">
 
-<h3 style="margin-bottom: 5rem;">Evening Reflection</h3>
-<h5>Healthy Habits</h5>
+  <h3 style="margin-bottom: 0.5rem;">Evening Reflection</h3>
+  <a style="margin-bottom: 3rem; font-size: 0.9rem;" href="/behavior/reporting">Back to Reporting</a>
+  <h5>Healthy Habits</h5>
   <form method="POST" action="/tasks">
     <span>
       <label for="sleepDuration">Excercise & Sports today</label>
@@ -22,6 +23,7 @@
       <input type="number" name="eatingQuality" />
     </span>
 
+    <hr style="border-top: 3px dotted #bbb;">
     <%- include('./partials/moodmeter.ejs') %>
     <hr style="border-top: 3px dotted #bbb;">
     <%- include('./partials/date.ejs') %>

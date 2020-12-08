@@ -1,0 +1,35 @@
+<%- include('./partials/header.ejs') %> 
+<%- include('./partials/greeting.ejs')%>
+<%- include('./partials/menu.ejs') %> 
+<%- include('./partials/divider-dotted.ejs') %>
+
+<div style="display: flex; flex-direction: column">
+  <h3 style="margin-bottom: 5rem">Your Trends</h3>
+  <h5>Add new entry</h5>
+  <div style="display: flex; flex-direction: column; align-items: baseline;">
+    <h6>Week average</h6>
+    <p>(Selector for week, by default previous week)</p>
+    </br>
+    <ul>
+    <li>Average sleep duration</li>
+    <li>Average time spent on sports and exercise</li>
+    <li>Average time spent studying</li>
+    <li>Average sleep quality
+    <li>Average generic mood</li>
+  </ul>
+</br>
+<h6>Month average</h6> 
+<p>(Selector for month, by default previous month)</p>
+    </br>
+    <ul>
+    <li>Average sleep duration</li>
+    <li>Average time spent on sports and exercise</li>
+    <li>Average time spent studying</li>
+    <li>Average sleep quality
+    <li>Average generic mood</li>
+  </ul>
+  </div>
+  
+</div>
+
+<%- include('./partials/footer.ejs') %>

@@ -1,0 +1,24 @@
+<%- include('./partials/header.ejs') %> <%- include('./partials/greeting.ejs')
+%> <%- include('./partials/menu.ejs') %> <%-
+include('./partials/divider-dotted.ejs') %>
+
+<div style="display: flex; flex-direction: column">
+  <h3 style="margin-bottom: 5rem">Reporting</h3>
+  <h5>Add new entry</h5>
+  <div style="display: flex; flex-direction: row; align-items: baseline;">
+    <a style="
+    margin-right: 0.5rem; 
+    font-weight: bold;" 
+    href="/behavior/reporting/morning">Morning</a>
+    <p> or </p> 
+    <a style="
+    margin-left: 0.5rem;
+    font-weight: bold;" 
+    href="/behavior/reporting/evening">Evening</a>
+  </div>
+  <h5>Reporting done today?</h5>
+  <p>Morning (yes/no)</p>
+  <p>Evening (yes/no)</p>
+</div>
+
+<%- include('./partials/footer.ejs') %>
