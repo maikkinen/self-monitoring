@@ -5,29 +5,35 @@
 
 <div style="display: flex; flex-direction: column">
   <h3 style="margin-bottom: 5rem">Your Trends</h3>
-  <h5>Add new entry</h5>
+
   <div style="display: flex; flex-direction: column; align-items: baseline;">
-    <h6>Week average</h6>
-    <p>(Selector for week, by default previous week)</p>
-    </br>
-    <ul>
-    <li>Average sleep duration</li>
-    <li>Average time spent on sports and exercise</li>
-    <li>Average time spent studying</li>
-    <li>Average sleep quality
-    <li>Average generic mood</li>
-  </ul>
-</br>
-<h6>Month average</h6> 
-<p>(Selector for month, by default previous month)</p>
-    </br>
-    <ul>
-    <li>Average sleep duration</li>
-    <li>Average time spent on sports and exercise</li>
-    <li>Average time spent studying</li>
-    <li>Average sleep quality
-    <li>Average generic mood</li>
-  </ul>
+    
+    <div>
+      <h6>Last week average</h6>
+      <ul>
+        <li>Average sleep duration <%- data.lastWeek.average_sleep_duration %></li>
+        <li>Average time spent on sports and exercise: <%- data.lastWeek.average_sports_duration %></li>
+        <li>Average time spent studying: <%- data.lastWeek.average_studying_duration %></li>
+        <li>Average sleep quality: <%- data.lastWeek.average_sleep_quality %></li>
+        <li>Average generic mood: <%- data.lastWeek.average_mood %></li>
+      </ul>
+    </div>
+
+  </br>
+
+    
+    <div>
+      <h6>Last Month average</h6> 
+      <ul>
+        <li>Average sleep duration: <%- data.lastMonth.average_sleep_duration %></li>
+        <li>Average time spent on sports and exercise: <%- data.lastMonth.average_sports_duration %></li>
+        <li>Average time spent studying: <%- data.lastMonth.average_studying_duration %></li>
+        <li>Average sleep quality: <%- data.lastMonth.average_sleep_quality %></li>
+        <li>Average generic mood: <%- data.lastMonth.average_mood %></li>
+      </ul>
+    </div>
+
+
   </div>
   
 </div>

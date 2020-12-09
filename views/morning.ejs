@@ -7,28 +7,22 @@
   <h3 style="margin-bottom: 0.5rem;">Starting the Day</h3>
     <a style="margin-bottom: 3rem; font-size: 0.9rem;" href="/behavior/reporting">Back to Reporting</a>
     <h5>Sleeping</h5>
-  <form method="POST" action="/tasks">
-    <span>
-      <label for="sleepDuration">How long did You sleep?</label>
-      <input type="number" name="sleepDuration" />
-    </span>
+  <form method="POST" action="/behavior/reporting/morning">
+    <label for="sleepDuration">How long did You sleep?</label>
+    <input type="number" name="sleepDuration"  step="0.1" min="0" max="36" />
 
-    <span>
-      <label for="sleepDuration">Feeling on Sleep Quality</label>
-      <input type="number" name="sleepQuality" />
-    </span>
+    <label for="sleepQuality">Feeling on Sleep Quality</label>
+    <input name="sleepQuality" type="range" min="1" max="5" />
+  
+    <hr style="border-top: 3px dotted #bbb;">
+    <h5>How's Your Mood?</h5>
+    <input style="text-align: center;" type="range" min="1" max="5" name="mood" />
 
     <hr style="border-top: 3px dotted #bbb;">
-    <%- include('./partials/moodmeter.ejs') %>
-    <hr style="border-top: 3px dotted #bbb;">
-    <%- include('./partials/date.ejs') %>
-
+    <label for="date">Date</label>
+    <input style="width: 20rem;" type="date" id="date" name="date" />
+    
     <input style="width:100%;" type="submit" value="Submit" />
   </form>
 </div>
-
-
-  
-  
-
 <%- include('./partials/footer.ejs') %>

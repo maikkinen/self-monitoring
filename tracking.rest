@@ -1,7 +1,13 @@
-GET http://localhost:7777/
+GET http://localhost:7777/ HTTP/1.1
 ###
 
-GET http://localhost:7777/news/4 HTTP/1.1
+POST http://localhost:7777/behavior/reporting/morning HTTP/1.1
+Content-Type: application/json
+
+{
+    "sleepDuration": "6",
+    "sleepQuality": "3",
+}
 
 ###
 
