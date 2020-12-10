@@ -1,6 +1,7 @@
-<%- include('./partials/header.ejs') %> <%- include('./partials/greeting.ejs')%>
-<%- include('./partials/menu.ejs') %> <%-
-include('./partials/divider-dotted.ejs') %>
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/greeting.ejs')%>
+<%- include('./partials/menu.ejs') %>
+<%- include('./partials/divider-dotted.ejs') %>
 
 <div style="display: flex; flex-direction: column">
   <h3 style="margin-bottom: 0.5rem">Starting the Day</h3>
@@ -14,12 +15,15 @@ include('./partials/divider-dotted.ejs') %>
     <input type="number" name="sleepDuration" step="0.1" min="0" max="24" />
     <% if (errors.sleepDuration) { %> <%
     Object.values(errors.sleepDuration).forEach((err) => { %>
-    <p style="
-    font-weight: bold;
-    font-size: 0.9rem;
-    color:darkred;
-    opacity: 0.9;
-    margin: 0.5rem 0rem 2rem 0rem">
+    <p
+      style="
+        font-size: 0.9rem;
+        color: darkred;
+        font-weight: bold;
+        opacity: 0.9;
+        margin: 0.5rem 0rem 1rem 0rem;
+      "
+    >
       <%= err %>
     </p>
     <% }); %> <% } %>
@@ -33,34 +37,18 @@ include('./partials/divider-dotted.ejs') %>
     </div>
     <% if (errors.sleepQuality) { %> <%
     Object.values(errors.sleepQuality).forEach((err) => { %>
-    <p style="
-    font-size: 0.9rem;
-    color:darkred;
-    font-weight: bold;
-    opacity: 0.9; 
-    margin: 0.5rem 0rem 1rem 0rem">
+    <p
+      style="
+        font-size: 0.9rem;
+        color: darkred;
+        font-weight: bold;
+        opacity: 0.9;
+        margin: 0.5rem 0rem 1rem 0rem;
+      "
+    >
       <%= err %>
     </p>
-    <% }); %> <% } %>
-
-    <hr style="border-top: 3px dotted #bbb" />
-    <h5>How's Your Mood?</h5>
-    <div style="display: flex; flex-direction: row; padding: 1rem; margin: 0">
-      <h6 style="margin-right: 0.5rem">1</h6>
-      <input
-        style="text-align: center"
-        type="range"
-        min="1"
-        max="5"
-        name="mood"
-      />
-      <h6 style="margin-left: 0.5rem">5</h6>
-    </div>
-    <% if (errors.mood) { %> <% Object.values(errors.mood).forEach((err) => { %>
-    <p style="font-size: 0.9rem; opacity: 0.9; margin: 0.5rem 0rem 1rem 0rem">
-      <%= err %>
-    </p>
-    <% }); %> <% } %>
+    <% }); %> <% } %> <%- include('./partials/moodmeter.ejs') %>
 
     <hr style="border-top: 3px dotted #bbb" />
     <label for="date">Date</label>

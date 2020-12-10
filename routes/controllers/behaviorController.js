@@ -8,7 +8,7 @@ import {
   addRecord,
 } from "../../services/reportingService.js";
 
-import { validate, required, notNull, numberBetween } from "https://deno.land/x/validasaur@v0.15.0/mod.ts";
+import { validate, required, notNull, numberBetween } from "../../deps.js";
 
 const validationMorning = {
   mood: [required, notNull, numberBetween(1, 5)],

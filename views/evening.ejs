@@ -59,24 +59,7 @@
     </p>
     <% }); %> <% } %>
 
-    <hr style="border-top: 3px dotted #bbb" />
-    <h5>How's Your Mood?</h5>
-    <div style="display: flex; flex-direction: row; padding: 1rem; margin: 0">
-      <h6 style="margin-right: 0.5rem">1</h6>
-      <input
-        style="text-align: center"
-        type="range"
-        min="1"
-        max="5"
-        name="mood"
-      />
-      <h6 style="margin-left: 0.5rem">5</h6>
-    </div>
-    <% if (errors.mood) { %> <% Object.values(errors.mood).forEach((err) => { %>
-    <p style="font-size: 0.9rem; opacity: 0.9; margin: 0.5rem 0rem 1rem 0rem">
-      <%= err %>
-    </p>
-    <% }); %> <% } %>
+    <%- include('./partials/moodmeter.ejs') %> 
 
     <hr style="border-top: 3px dotted #bbb;">
     <label for="date">Date</label>
