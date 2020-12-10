@@ -3,14 +3,25 @@
 <%- include('./partials/menu.ejs') %>
 <%- include('./partials/divider-dotted.ejs') %>
 <p>
-  The application provides functionality for summarization of responses. 
-  Each user can view statistics of their reports on a weekly and monthly level. 
-  These statistics are as follows.
+  This is a web application for self-monitoring purposes. The application provides users an opportunity to report behavior daily.   
+  </p>
 
-    Average sleep duration
-    Average time spent on sports and exercise
-    Average time spent studying
-    Average sleep quality
-    Average generic mood
-</p>
+
+<div style="display: flex; flex-direction: column; align-items: center;">
+
+    <% if( data.today.average_mood < data.yesterday.average_mood) { %> 
+      <h4>Things are looking gloomy today.</h4>
+    <% } else { %>
+      <h4>Things are looking bright today.</h4>
+    <% } %>
+
+    <div style="
+    border-style: dotted; 
+    color: #bbb; 
+    border-radius: 1rem; 
+    padding: 3rem 1.5rem 1.5rem 1.5rem">
+      <h6>Average mood today: <%- data.today.average_mood %></h6>
+      <h6>Average mood yesterday: <%- data.yesterday.average_mood %></h6>
+    </div>  
+</div>
 <%- include('./partials/footer.ejs') %>
