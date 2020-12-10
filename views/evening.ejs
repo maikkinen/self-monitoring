@@ -7,25 +7,76 @@
   <h3 style="margin-bottom: 0.5rem;">Evening Reflection</h3>
   <a style="margin-bottom: 3rem; font-size: 0.9rem;" href="/behavior/reporting">Back to Reporting</a>
   <h5>Healthy Habits</h5>
-  <form method="POST" action="/behavior/reporting/evening">
-    <span>
-      <label for="sportsDuration">Excercise & Sports today</label>
-      <input type="number" step="0.1" name="sportsDuration" />
-    </span>
+    <form method="POST" action="/behavior/reporting/evening">
+      <label for="sportsDuration">Time Spent with Sports</label>
+      <input type="number" name="sportsDuration" step="0.1" min="0" max="24" />
+      <% if (errors.sportsDuration) { %> <%
+      Object.values(errors.sportsDuration).forEach((err) => { %>
+      <p style="
+      font-weight: bold;
+      font-size: 0.9rem;
+      color:darkred;
+      opacity: 0.9;
+      margin: 0.5rem 0rem 2rem 0rem">
+        <%= err %>
+      </p>
+      <% }); %> <% } %>
 
-    <span>
       <label for="studyingDuration">Time Spent Studying</label>
-      <input type="number" step="0.1" name="studyDuration" />
-    </span>
+      <input type="number" name="studyingDuration" step="0.1" min="0" max="24" />
+      <% if (errors.studyingDuration) { %> <%
+      Object.values(errors.studyingDuration).forEach((err) => { %>
+      <p style="
+      font-weight: bold;
+      font-size: 0.9rem;
+      color:darkred;
+      opacity: 0.9;
+      margin: 0.5rem 0rem 2rem 0rem">
+        <%= err %>
+      </p>
+      <% }); %> <% } %>
 
-    <span>
-      <label for="eatingQuality">Eating Quality</label>
-      <input type="range" min="1" max="5" name="eatingQuality" />
-    </span>
+    <label for="eatingQuality">Feeling on Eating Quality and Regularity</label>
+    <div style="
+      display: flex;
+      flex-direction: row;
+      padding: 1rem; margin: 0">
 
-    <hr style="border-top: 3px dotted #bbb;">
+      <h6 style="margin-right: 0.5rem">1</h6>
+      <input name="eatingQuality" type="range" min="1" max="5" />
+      <h6 style="margin-left: 0.5rem">5</h6>
+    </div>
+    
+    <% if (errors.eatingQuality) { %> <%
+    Object.values(errors.eatingQuality).forEach((err) => { %>
+    <p style="
+    font-size: 0.9rem;
+    color:darkred;
+    font-weight: bold;
+    opacity: 0.9; 
+    margin: 0.5rem 0rem 1rem 0rem">
+      <%= err %>
+    </p>
+    <% }); %> <% } %>
+
+    <hr style="border-top: 3px dotted #bbb" />
     <h5>How's Your Mood?</h5>
-    <input style="text-align: center;" type="range" min="1" max="5" name="mood" />
+    <div style="display: flex; flex-direction: row; padding: 1rem; margin: 0">
+      <h6 style="margin-right: 0.5rem">1</h6>
+      <input
+        style="text-align: center"
+        type="range"
+        min="1"
+        max="5"
+        name="mood"
+      />
+      <h6 style="margin-left: 0.5rem">5</h6>
+    </div>
+    <% if (errors.mood) { %> <% Object.values(errors.mood).forEach((err) => { %>
+    <p style="font-size: 0.9rem; opacity: 0.9; margin: 0.5rem 0rem 1rem 0rem">
+      <%= err %>
+    </p>
+    <% }); %> <% } %>
 
     <hr style="border-top: 3px dotted #bbb;">
     <label for="date">Date</label>

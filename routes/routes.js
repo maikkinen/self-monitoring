@@ -12,8 +12,8 @@ router.get('/behavior/reporting/morning', showMorningForm);
 router.get('/behavior/reporting/evening', showEveningForm);
 router.get('/behavior/summary', showSummary);
 
-router.post('/behavior/reporting/morning', reportingApi.addMorning);
-router.post('/behavior/reporting/evening', reportingApi.addEvening);
+router.post('/behavior/reporting/morning', showMorningForm); //no Api in use anymore
+router.post('/behavior/reporting/evening', showEveningForm);
 
 router.get('/auth/login', showLogin);
 router.get('/auth/registration', showRegistration);
