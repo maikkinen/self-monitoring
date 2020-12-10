@@ -1,6 +1,6 @@
 import * as reportingService from "../../services/reportingService.js";
 
-const addMorning = async ({ request, response }) => {
+const addMorning = async ({ render, request, response }) => {
   const body = request.body(); // ({ type: 'json' });
   const document = await body.value;
   const sleepDuration = document.get('sleepDuration');
@@ -9,14 +9,8 @@ const addMorning = async ({ request, response }) => {
 
   var date = document.get('date');
   if (date === "") {
-    date = new Date  //this should be today by default
-    //should it be date.now instead?
+    date = new Date 
   }
-
-  console.log('sleepQuality: ', sleepQuality);
-  console.log('sleepDuration: ', sleepDuration);
-  console.log("date: ", date);
-  console.log("date2: ", new Date) // or date.now?
 
   const entry = {
     sleepDuration: sleepDuration,
@@ -28,14 +22,16 @@ const addMorning = async ({ request, response }) => {
     type: 'morning',
     studyingDuration: null,
     eatingQuality: null,
-    userid: 'abcde' // TODO ADD USER ID TO FRONTEND AND HERE
+    userid: 'abcde',
   }
 
-  console.log(entry);
-
-  await reportingService.addRecord(entry);
-  response.status = 200;
-  response.redirect('/behavior/reporting');
+  if (mood > 0) {
+    await reportingService.addRecord(entry);
+    response.status = 200;
+    response.redirect('/behavior/reporting');
+  } else {
+    response.status = 400;
+  }
 };
 
 const addEvening = async ({ request, response }) => {
@@ -48,8 +44,7 @@ const addEvening = async ({ request, response }) => {
 
   var date = document.get('date');
   if (date === "") {
-    date = new Date  //this should be today by default
-    //should it be date.now instead?
+    date = new Date
   }
 
   const entry = {
@@ -61,9 +56,8 @@ const addEvening = async ({ request, response }) => {
     sleepQuality: null,
     sleepDuration: null,
     type: 'evening',
-    userid: 'abcde' // TODO ADD USER ID TO FRONTEND AND HERE
+    userid: 'abcde'
   }
-  console.log('evening entry: ', entry);
 
   await reportingService.addRecord(entry);
   response.status = 200;
@@ -71,4 +65,4 @@ const addEvening = async ({ request, response }) => {
 }
 
 
-export { addMorning, addEvening  }
+export { addMorning, addEvening }

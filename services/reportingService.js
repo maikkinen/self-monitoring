@@ -16,36 +16,74 @@ const addRecord = async (entry) => { //replace timed_tasks with correct table
     entry.userid, entry.type, entry.sleepDuration, entry.sleepQuality, entry.mood, entry.sportsDuration, entry.studyingDuration, entry.eatingQuality);
 }
 
-const getLastWeekAverage = async (value, id) => {
+const getLastWeekAverage = async (userid) => {
   const res = await executeQuery(
     "SELECT ROUND(AVG(sleepquality), 2) as average_sleep_quality," +
     " ROUND(AVG(sleepduration), 2) as average_sleep_duration," +
     " ROUND(AVG(sportsduration), 2) as average_sports_duration," +
     " ROUND(AVG(studyingduration), 2) as average_studying_duration," +
     " ROUND(AVG(mood), 2) as average_mood" +
-    " FROM reporting WHERE userid = $1 AND timestamp > current_date - interval '7 days';", id);
+    " FROM reporting WHERE userid = $1 AND timestamp > current_date - interval '7 days';", userid);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
     console.log("avg things: ", rows)
-    return res.rowsOfObjects()[0];
-  }
-  return {};
+    const retObject = res.rowsOfObjects()[0]
+    if (!retObject.average_sleep_quality) {
+      retObject.average_sleep_quality = "- no data -"
+    } else if (!retObject.average_sleep_duration) {
+      retObject.average_sleep_duration = "- no data -"
+    } else if (!retObject.average_sports_duration) {
+      retObject.average_sports_duration = "- no data -"
+    } else if (!retObject.average_studying_duration) {
+      retObject.average_studying_duration = "- no data -"
+    } else if (!retObject.average_mood) {
+      retObject.average_mood = "- no data -"
+    }
+    return retObject;
+  } else {
+    return {
+      average_sleep_quality: "- no data -",
+      average_sleep_duration: "- no data -",
+      average_sports_duration: "- no data -",
+      average_studying_duration: "- no data -",
+      average_mood: "- no data -"
+    };
+  };
 }
 
-const getLastMonthAverage = async (id) => {
+const getLastMonthAverage = async (userid) => {
   const res = await executeQuery(
     "SELECT ROUND(AVG(sleepquality), 2) as average_sleep_quality," +
     " ROUND(AVG(sleepduration), 2) as average_sleep_duration," +
     " ROUND(AVG(sportsduration), 2) as average_sports_duration," +
     " ROUND(AVG(studyingduration), 2) as average_studying_duration," +
     " ROUND(AVG(mood), 2) as average_mood" +
-    " FROM reporting WHERE userid = $1 AND timestamp > current_date - interval '30 days';", id);
-  if (res && res.rowCount > 0) {
-    const rows = res.rowsOfObjects()[0];
-    console.log("avg things: ", rows)
-    return res.rowsOfObjects()[0];
-  }
-  return {};
+    " FROM reporting WHERE userid = $1 AND timestamp > current_date - interval '30 days';", userid);
+    if (res && res.rowCount > 0) {
+      const rows = res.rowsOfObjects()[0];
+      console.log("avg things: ", rows)
+      const retObject = res.rowsOfObjects()[0]
+      if (!retObject.average_sleep_quality) {
+        retObject.average_sleep_quality = "- no data -"
+      } else if (!retObject.average_sleep_duration) {
+        retObject.average_sleep_duration = "- no data -"
+      } else if (!retObject.average_sports_duration) {
+        retObject.average_sports_duration = "- no data -"
+      } else if (!retObject.average_studying_duration) {
+        retObject.average_studying_duration = "- no data -"
+      } else if (!retObject.average_mood) {
+        retObject.average_mood = "- no data -"
+      }
+      return retObject;
+    } else {
+      return {
+        average_sleep_quality: "- no data -",
+        average_sleep_duration: "- no data -",
+        average_sports_duration: "- no data -",
+        average_studying_duration: "- no data -",
+        average_mood: "- no data -"
+      };
+    };
 }
 
 const getYesterdayAverage = async (id) => {
