@@ -28,15 +28,15 @@ const getLastWeekAverage = async (userid) => {
     const rows = res.rowsOfObjects()[0];
     console.log("avg things: ", rows)
     const retObject = res.rowsOfObjects()[0]
-    if (!retObject.average_sleep_quality) {
+    if (!retObject.average_sleep_quality || isNaN(retObject.average_sleep_quality) ) {
       retObject.average_sleep_quality = "- no data -"
-    } else if (!retObject.average_sleep_duration) {
+    } else if (!retObject.average_sleep_duration || isNaN(retObject.average_sleep_duration) ) {
       retObject.average_sleep_duration = "- no data -"
-    } else if (!retObject.average_sports_duration) {
+    } else if (!retObject.average_sports_duration || isNaN(retObject.average_sports_duration) ) {
       retObject.average_sports_duration = "- no data -"
-    } else if (!retObject.average_studying_duration) {
+    } else if (!retObject.average_studying_duration || isNaN(retObject.average_studying_duration) ) {
       retObject.average_studying_duration = "- no data -"
-    } else if (!retObject.average_mood) {
+    } else if (!retObject.average_mood || isNaN(retObject.average_mood) ) {
       retObject.average_mood = "- no data -"
     }
     return retObject;
@@ -63,15 +63,15 @@ const getLastMonthAverage = async (userid) => {
       const rows = res.rowsOfObjects()[0];
       console.log("avg things: ", rows)
       const retObject = res.rowsOfObjects()[0]
-      if (!retObject.average_sleep_quality) {
+      if (!retObject.average_sleep_quality || isNaN(retObject.average_sleep_quality) ) {
         retObject.average_sleep_quality = "- no data -"
-      } else if (!retObject.average_sleep_duration) {
+      } else if (!retObject.average_sleep_duration || isNaN(retObject.average_sleep_duration) ) {
         retObject.average_sleep_duration = "- no data -"
-      } else if (!retObject.average_sports_duration) {
+      } else if (!retObject.average_sports_duration || isNaN(retObject.average_sports_duration) ) {
         retObject.average_sports_duration = "- no data -"
-      } else if (!retObject.average_studying_duration) {
+      } else if (!retObject.average_studying_duration || isNaN(retObject.average_studying_duration) ) {
         retObject.average_studying_duration = "- no data -"
-      } else if (!retObject.average_mood) {
+      } else if (!retObject.average_mood || isNaN(retObject.average_mood) ) {
         retObject.average_mood = "- no data -"
       }
       return retObject;
