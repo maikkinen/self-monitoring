@@ -1,24 +1,73 @@
-<%- include('./partials/header.ejs') %> <%- include('./partials/greeting.ejs')
-%> <%- include('./partials/menu.ejs') %> <%-
+<%- include('./partials/header.ejs') %> <%- include('./partials/greeting.ejs')%>
+<%- include('./partials/menu.ejs') %> <%-
 include('./partials/divider-dotted.ejs') %>
 
-<div style="display: flex; flex-direction: column">
-  <h3 style="margin-bottom: 5rem">Reporting</h3>
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    align-items: center;
+    position: absolute;
+    left: 26%;
+    padding-bottom: 6rem;
+  "
+>
+  <h3 style="margin-bottom: 1rem">Reporting</h3>
   <h5>Add new entry</h5>
-  <div style="display: flex; flex-direction: row; align-items: baseline;">
-    <a style="
-    margin-right: 0.5rem; 
-    font-weight: bold;" 
-    href="/behavior/reporting/morning">Morning</a>
-    <p> or </p> 
-    <a style="
-    margin-left: 0.5rem;
-    font-weight: bold;" 
-    href="/behavior/reporting/evening">Evening</a>
+  <div style="margin-bottom: 5rem">
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        border-style: dotted;
+        color: #bbb;
+        border-radius: 1rem;
+        padding: 3rem 1.5rem 1.5rem 1.5rem;
+      "
+    >
+      <a
+        style="margin-right: 0.5rem; font-weight: bold"
+        href="/behavior/reporting/morning"
+        >Morning</a
+      >
+      <p>or</p>
+      <a
+        style="margin-left: 0.5rem; font-weight: bold"
+        href="/behavior/reporting/evening"
+        >Evening</a
+      >
+    </div>
   </div>
-  <h5>Reporting done today?</h5>
-  <p>Morning (yes/no)</p>
-  <p>Evening (yes/no)</p>
+
+  <h5>Today's status</h5>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+      border-style: dotted;
+      color: #bbb;
+      border-radius: 1rem;
+      padding: 3.5rem 1.5rem 1.5rem 1.5rem;
+    "
+  >
+    <h6>
+      <% if (morning) { %>
+       Morning reporting done.
+      <% } else { %>
+        Morning reporting missing.
+      <% } %>
+     </h6>
+     <h6>
+      <% if (evening) { %>
+       Evening reporting done.
+      <% } else { %>
+        Evening reporting missing.
+      <% } %>
+     </h6>
+  </div>
 </div>
 
 <%- include('./partials/footer.ejs') %>

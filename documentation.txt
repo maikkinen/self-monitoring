@@ -36,3 +36,7 @@ users
 - email
 - password (not plaintext)
 
+
+REMEMBER TO
+-remove tracking-named stuff from all over the code :)
+

@@ -1,5 +1,4 @@
 import { executeQuery } from "../database/database.js";
-import { assertEquals } from "https://deno.land/std@0.78.0/testing/asserts.ts";
 
 const getRecords = async () => {
   const res = await executeQuery("SELECT * FROM reporting ORDER BY id DESC LIMIT 50");
@@ -72,24 +71,47 @@ const getTodayAverage = async (id) => {
     " AND DATE(timestamp) < CURRENT_DATE + INTERVAL '1 DAY' ;", id);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
-    console.log("avg things: ", rows)
     return res.rowsOfObjects()[0];
   }
   return {};
 }
 
-const getRecord = async(id) => {
-  //Todo: get a specific record...
-  //Needed: 
-  // 1) Checking, if records for today (this morning or this evening)
-  // 2) 
+const getMorning = async (id) => {
+  const res = await executeQuery(
+    "SELECT mood, userid, timestamp" +
+    " FROM reporting WHERE userid = $1" +
+    " AND type = 'morning'" +
+    " AND DATE(timestamp) >= CURRENT_DATE;", id);
+  if (res && res.rowCount > 0) {
+    const rows = res.rowsOfObjects()[0];
+    console.log("morning record exists ", rows)
+    return true;
+  }
+  return false;
+}
+
+const getEvening = async (id) => {
+  const res = await executeQuery(
+    "SELECT mood, userid, timestamp" +
+    " FROM reporting WHERE userid = $1" +
+    " AND type = 'evening'" +
+    " AND DATE(timestamp) >= CURRENT_DATE;", id);
+  if (res && res.rowCount > 0) {
+    const rows = res.rowsOfObjects()[0];
+    console.log("evening record exists ", rows)
+    return true;
+  }
+  return false;
 }
 
 
-export { addRecord,
+export { 
+  addRecord,
   getRecords,
+  getMorning,
+  getEvening,
   getLastWeekAverage,
   getLastMonthAverage,
   getYesterdayAverage,
-  getTodayAverage
+  getTodayAverage,
 }

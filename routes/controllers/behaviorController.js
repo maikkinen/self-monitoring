@@ -1,6 +1,11 @@
-// import { getAverage, getTasks } from "../../services/trackingService.js";
-
-import { getLastWeekAverage, getLastMonthAverage, getYesterdayAverage, getTodayAverage } from "../../services/reportingService.js";
+import { 
+  getLastWeekAverage, 
+  getLastMonthAverage, 
+  getYesterdayAverage, 
+  getTodayAverage ,
+  getMorning,
+  getEvening
+} from "../../services/reportingService.js";
 
 const showLanding = async ({ render }) => {
   const userid = "abcde"
@@ -24,8 +29,17 @@ const showSummary = async ({ render }) => {
     })
 }
 
-const showReporting = ({ render }) => {
-  render('reporting.ejs')
+const showReporting = async ({ render }) => {
+  const userid = "abcde"
+  const data = {
+    morning: await getMorning(userid),
+    evening: await getEvening(userid)
+  }
+  render('reporting.ejs',
+    {
+      morning: data.morning,
+      evening: data.evening 
+    })
 }
 
 const showMorningForm = ({ render }) => {
