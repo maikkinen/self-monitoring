@@ -1,4 +1,4 @@
-Welcome :)
+# Welcome :) # 
 
 1. Config
 2. Database
@@ -7,8 +7,9 @@ Welcome :)
 
 =================
 
+Download the zip file and extract all to a folder of your choise.
 
-Section 1: Config
+###Section 1: Config ### 
 
 In config/config.js, give a config object as an argument to the config.database.
 It will look like something like this:
@@ -27,7 +28,7 @@ One you're done, please save.
 =================
 
 
-Section 2: Database
+###Section 2: Database###
 
 Next, please log into your PostgreSQL account and create the following two tables into the database.
 
@@ -39,7 +40,7 @@ Note!
 When copypasting the following statement, please make sure you copy the entire thing below,
 including the line starting with "CREATE UNIQUE - -" to the same command.
 
-# start from here ... ##
+#### start from here ... ####
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -49,7 +50,7 @@ CREATE TABLE users (
 
 CREATE UNIQUE INDEX ON users((lower(email)));
 
-# ... until here #
+#### ... until here ####
 
 
 Then, create table for reporting records using the following command:
@@ -71,7 +72,7 @@ CREATE TABLE reporting (
 =================
 
 
-Section 3: Running the App
+###Section 3: Running the App ###
 
 The environment variables have been commented out; 
 thus, to run the application, run the following command in the project's root folder:
@@ -87,7 +88,7 @@ You're Good to go! :)
 =================
 
 
-Section 4: Insert data into database (optional)
+###Section 4: Insert data into database (optional)###
 
 Your life's been made easy - once you've completed steps 1-3, just one more thing to do.
 Please, create yourself an accoutn within the app.
