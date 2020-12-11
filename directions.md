@@ -3,6 +3,7 @@ Welcome :)
 1. Config
 2. Database
 3. Running the App
+4. Insert data into database (optional)
 
 =================
 
@@ -92,7 +93,7 @@ Your life's been made easy - once you've completed steps 1-3, just one more thin
 Please, create yourself an accoutn within the app.
 
 Then, you can fill in some data into the database using the
-following queries, if you wish to.
+following queries, if you wish to. The commands are formatted so that they're an easy copy-paste in VS code :)
 
 (So please note that the queries are made assuming that a user account with id number 1 exists.)
 
