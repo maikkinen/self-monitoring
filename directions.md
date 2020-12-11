@@ -39,7 +39,7 @@ Note!
 When copypasting the following statement, please make sure you copy the entire thing below,
 including the line starting with "CREATE UNIQUE - -" to the same command.
 
-### so down from here ###
+# start from here ... ##
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
@@ -49,7 +49,7 @@ CREATE TABLE users (
 
 CREATE UNIQUE INDEX ON users((lower(email)));
 
-### until here ###
+# ... until here #
 
 
 Then, create table for reporting records using the following command:
