@@ -37,8 +37,8 @@ const showLanding = async ({ render, session }) => {
 
   render('index.ejs', {
     data: {
-      today: await getYesterdayAverage(loggedInUserId),
-      yesterday: await getTodayAverage(loggedInUserId)
+      today: await getTodayAverage(loggedInUserId),
+      yesterday: await getYesterdayAverage(loggedInUserId)
     },
     loggedInUserEmail: loggedInUserEmail,
   })
@@ -110,13 +110,14 @@ const showMorningForm = async ({ render, request, response, session }) => {
 
 
     if (entry.date === "" || !entry.date) {
-      entry.date = new Date
+      entry.date = new Date // If user adds a new record without date, it's today by default.
     }
 
     if (parseInt(entry.sleepDuration) > 0) {
       entry.sleepDuration = parseInt(entry.sleepDuration)
     }
     
+    // Using validasaur, the input fields are validated.
     const [passes, errors] = await validate(entry, validationMorning);
 
   

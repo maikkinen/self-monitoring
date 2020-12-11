@@ -6,7 +6,6 @@
 
 <h3 style="margin-bottom: 5rem;">Login</h3>
 
-<% console.log(loggedInUserEmail) %>
 <% if(loggedInUserEmail) { %>
   <h6>Already logged in as: <%= loggedInUserEmail %></h6>
   <form method="POST" action="/auth/logout">
@@ -16,14 +15,21 @@
   <form method="POST" action="/auth/login">
     <span>
       <label for="email">Email</label>
-      <input type="email" name="email" />
+      <input type="email" name="email" value="<%= formData.email %>" />
     </span>
 
     <span>
       <label for="password">Password</label>
-      <input type="password" name="password" />
+      <input type="password" name="password" value="<%= formData.password %>" />
     </span>
     <input type="submit" value="Submit" />
+
+    <% if (frontendErrors && frontendErrors.length > 0) { %>
+        <% frontendErrors.forEach((error) => { %>
+          <p style="color:darkred; "><%= error %></p>
+        <% }); %>
+      <% } %>
+
 
     <div style="display: flex; flex-direction: row;">
       <h6 style="margin-right: 1rem;">Not signed up yet?</h6>
