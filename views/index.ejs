@@ -9,6 +9,11 @@
 
 <div style="display: flex; flex-direction: column; align-items: center;">
 
+  <% console.log(loggedInUserEmail) %>
+  <% if(loggedInUserEmail) { %>
+    <h6>Logged in as: <%= loggedInUserEmail %></h6>
+  <% } %>
+
     <% if( data.today.average_mood < data.yesterday.average_mood) { %> 
       <h4>Things are looking gloomy today.</h4>
     <% } else { %>
