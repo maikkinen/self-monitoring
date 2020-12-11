@@ -99,10 +99,10 @@ const getYesterdayAverage = async (id) => {
     "SELECT ROUND(AVG(mood), 2) as average_mood" +
     " FROM reporting WHERE userid = $1" +
     " AND DATE(timestamp) < current_date" +
-    " AND DATE(timestamp) >= CURRENT_DATE - INTERVAL '1 DAY' ;", id);
+    " AND DATE(timestamp) < CURRENT_DATE - INTERVAL '1 DAYS' ;", id);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
-    
+    console.log("rows is: ", rows)
     return res.rowsOfObjects()[0];
   }
   return {};
@@ -114,9 +114,8 @@ const getTodayAverage = async (id) => {
     "SELECT ROUND(AVG(mood), 2) as average_mood" +
     " FROM reporting WHERE userid = $1" +
     " AND DATE(timestamp) >= current_date" +
-    " AND DATE(timestamp) < CURRENT_DATE + INTERVAL '1 DAY' ;", id);
+    " AND DATE(timestamp) < CURRENT_DATE + INTERVAL '1 DAYS' ;", id);
   if (res && res.rowCount > 0) {
-    const rows = res.rowsOfObjects()[0];
     return res.rowsOfObjects()[0];
   }
   return {};

@@ -4,8 +4,4 @@ const getUsers = async({}) => {
   await authService.getAllUsers();
 }
 
-const login = async({}) => {
-  console.log('login')
-}
-
-export { getUsers, login }
+export { getUsers }

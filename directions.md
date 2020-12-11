@@ -3,9 +3,6 @@ Welcome :)
 1. Config
 2. Database
 3. Running the App
-4. Insert data into database (optional)
-
-
 
 =================
 
@@ -31,9 +28,9 @@ One you're done, please save.
 
 Section 2: Database
 
-Next, please log into your PostgreSQL account and create the following tables to the database.
+Next, please log into your PostgreSQL account and create the following two tables into the database.
 
-The database consists of two tables:
+The database consists of these tables:
   1) users
   2) reporting
 
@@ -89,15 +86,51 @@ You're Good to go! :)
 =================
 
 
-Section 3: Insert data into database (optional)
+Section 4: Insert data into database (optional)
 
-Your life's been made easy - you can fill in some data into the database using the
+Your life's been made easy - once you've completed steps 1-3, just one more thing to do.
+Please, create yourself an accoutn within the app.
+
+Then, you can fill in some data into the database using the
 following queries, if you wish to.
 
+(So please note that the queries are made assuming that a user account with id number 1 exists.)
+
 However, feel free to add data at your own. 
-To do so, create account into the app, and insert the data "as you would do", 
-as a normal user.
+To do so, create account into the app, and insert the data as you would do as "a normal user".
 
 
-=================
+================= 
+
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-20', 'morning', 8.4, 5, 5, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-21', 'morning', 5.6, 2, 4, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-22', 'morning', 9.0, 4, 5, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-23', 'morning', 8.5, 4, 3, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-24', 'morning', 9.0, 5, 4, null, null, null);
+
+
+
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-25', 'morning', 7.6, 4, 5, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-26', 'morning', 7.6, 2, 4, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-27', 'morning', 7.0, 5, 3, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-28', 'morning', 7.5, 4, 3, null, null, null);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-29', 'morning', 7.0, 3, 3, null, null, null);
+
+
+
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-20', 'evening', null, null, 5, 1, 6, 4);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-21', 'evening', null, null, 4, 1, 4, 4);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-22', 'evening', null, null, 3, 1, 8, 4);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-23', 'evening', null, null, 5, 1, 5, 4);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-24', 'evening', null, null, 5, 1, 8, 4);
+
+
+
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-25', 'evening', null, null, 5, 1, 7, 4);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-26', 'evening', null, null, 4, 0, 9, 3);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-27', 'evening', null, null, 3, 1, 8, 3);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-28', 'evening', null, null, 5, 0, 8.7, 2);
+INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) VALUES (1, '2020-11-29', 'evening', null, null, 5, 1, 8, 2);
+
+
 

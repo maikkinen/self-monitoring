@@ -8,7 +8,12 @@ const validateRegistration = {
 };
 
 const showLogin = async ({ request, response, session, render }) => {
-  console.log(request.method)
+  let frontendErrors = [];
+  let formData = {
+    password: '',
+    email: '',
+  }
+
   if (request.method === 'POST') {
     const body = request.body();
     const params = await body.value;
@@ -16,12 +21,19 @@ const showLogin = async ({ request, response, session, render }) => {
     const email = params.get('email');
     const password = params.get('password');
 
+    formData.email = email;
+    formData.password = password;
+
     // check if the email exists in the database
     const res = await authService.getUserByEmail(email);
     if (res.rowCount === 0) {
       response.status = 401;
-      render('login.ejs');
-
+      frontendErrors.push('No account has been created with that email')
+      render('login.ejs', {  
+        frontendErrors: frontendErrors,
+        loggedInUserEmail: null,
+        formData: formData,
+      });
       return;
     }
 
@@ -33,7 +45,12 @@ const showLogin = async ({ request, response, session, render }) => {
     const passwordCorrect = await bcrypt.compare(password, hash);
     if (!passwordCorrect) {
       response.status = 401;
-      render('login.ejs');
+      frontendErrors.push('Wrong password')
+      render('login.ejs', {
+        frontendErrors: frontendErrors, 
+        loggedInUserEmail: null,
+        formData: formData,
+      });
 
       return;
     }
@@ -43,21 +60,24 @@ const showLogin = async ({ request, response, session, render }) => {
       id: userObj.id,
       email: userObj.email
     });
-    console.log('session await')
-    console.log(await session.get('user'));
 
     const loggedInUserEmail = (await session.get('user')).email;
 
     response.body = 'Authentication successful!';
     console.log('successful auth');
-    response.redirect('/', { loggedInUserEmail: loggedInUserEmail} );
+    response.redirect('/', { 
+      loggedInUserEmail: loggedInUserEmail} );
 
   } else {
     let loggedInUserEmail;
     const sessionUser = await session.get('user');
     if(sessionUser) loggedInUserEmail = sessionUser.email;
 
-    render('login.ejs', { loggedInUserEmail: loggedInUserEmail} )
+    render('login.ejs', {
+      frontendErrors: frontendErrors,
+      loggedInUserEmail: loggedInUserEmail,
+      formData: formData,
+    } )
   }
 }
 
@@ -85,16 +105,13 @@ const showRegistration = async ({ render, request, response }) => {
     const password = params.get('password');
     const verification = params.get('verification');
 
-    console.log(email, password, verification);
 
     if (password !== verification) {
-      console.log('The entered passwords did not match');
       frontendErrors.push('The entered passwords did not match'); //thus, dont create new account
     }
 
     const emailReserved = await authService.isEmailReserved(email);
     if (emailReserved) {
-      console.log('Indeed, the email is already reserved.');
       frontendErrors.push('The email is already reserved.');
       //thus, dont create account with a matchin email
     }
@@ -105,29 +122,27 @@ const showRegistration = async ({ render, request, response }) => {
     }
 
     const [passes, errors] = await validate(newUser, validateRegistration);
-    console.log("errors from validasaur: ");
-    console.log(errors);
-    console.log("errors from frontend: ");
-    console.log(frontendErrors);
 
-
+    
+    /**
+     * These were left here on purpose - in case you'd be interested in seeing 
+     * the values in condole.
+     * console.log("Errors from validasaur: ");
+     * console.log(errors);
+     * console.log("errors from frontend: ");
+     * console.log(frontendErrors);
+     */
+  
     if (passes && frontendErrors.length < 1) {
       const hash = await bcrypt.hash(password);
-      console.log('password: ', password);
-      console.log('hash: ', hash);
 
       await authService.createNewUser(email, hash);
       response.status = 200;
-      console.log('success, created new accout');
       response.redirect('/');
     } else {
-      console.log('failed to create new')
-      console.log(formData);
       formData.password = password;
       formData.email = email;
       formData.verification = verification;
-
-      console.log(formData);
 
       response.status = 400;
       render('registration.ejs', {
