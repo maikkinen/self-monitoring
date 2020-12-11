@@ -109,10 +109,10 @@ VALUES (1, '2020-11-20', 'morning', 8.4, 5, 5, null, null, null);
 
 And then, replace the part starting with 'VALUES' with the following ones:
 
-VALUES (1, '2020-11-21', 'morning', 5.6, 2, 4, null, null, null);
-VALUES (1, '2020-11-22', 'morning', 9.0, 4, 5, null, null, null);
-VALUES (1, '2020-11-23', 'morning', 8.5, 4, 3, null, null, null);
-VALUES (1, '2020-11-24', 'morning', 9.0, 5, 4, null, null, null);
+- VALUES (1, '2020-11-21', 'morning', 5.6, 2, 4, null, null, null);
+- VALUES (1, '2020-11-22', 'morning', 9.0, 4, 5, null, null, null);
+- VALUES (1, '2020-11-23', 'morning', 8.5, 4, 3, null, null, null);
+- VALUES (1, '2020-11-24', 'morning', 9.0, 5, 4, null, null, null);
 
 
 
