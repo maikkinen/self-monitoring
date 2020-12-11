@@ -5,6 +5,14 @@
 <div style="display: flex; flex-direction: column;">
 
 <h3 style="margin-bottom: 5rem;">Login</h3>
+
+<% console.log(loggedInUserEmail) %>
+<% if(loggedInUserEmail) { %>
+  <h6>Already logged in as: <%= loggedInUserEmail %></h6>
+  <form method="POST" action="/auth/logout">
+    <input type="submit" value="Logout" />
+  </form>
+<% } else {%>  
   <form method="POST" action="/auth/login">
     <span>
       <label for="email">Email</label>
@@ -22,6 +30,7 @@
       <a href="/auth/registration">Create new account</a>
     </div>
   </form>
+  <% }%>
 </div>
 
 <%- include('./partials/footer.ejs') %>

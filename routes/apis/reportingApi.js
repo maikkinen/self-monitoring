@@ -1,6 +1,14 @@
 import * as reportingService from "../../services/reportingService.js";
 
-const addMorning = async ({ render, request, response }) => {
+const addMorning = async ({ render, request, response, session }) => {
+  let loggedInUserId;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+  } else {
+    return;
+  }
+
   const body = request.body(); // ({ type: 'json' });
   const document = await body.value;
   const sleepDuration = document.get('sleepDuration');
@@ -22,7 +30,7 @@ const addMorning = async ({ render, request, response }) => {
     type: 'morning',
     studyingDuration: null,
     eatingQuality: null,
-    userid: 'abcde',
+    userid: loggedInUserId,
   }
 
   if (mood > 0) {
@@ -34,7 +42,15 @@ const addMorning = async ({ render, request, response }) => {
   }
 };
 
-const addEvening = async ({ request, response }) => {
+const addEvening = async ({ request, response, session }) => {
+  let loggedInUserId;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+  } else {
+    return;
+  }
+
   const body = request.body(); // ({ type: 'json' });
   const document = await body.value;
   const sportsDuration = document.get('sportsDuration')
@@ -47,6 +63,7 @@ const addEvening = async ({ request, response }) => {
     date = new Date
   }
 
+
   const entry = {
     sportsDuration: sportsDuration,
     studyingDuration: studyingDuration,
@@ -56,7 +73,7 @@ const addEvening = async ({ request, response }) => {
     sleepQuality: null,
     sleepDuration: null,
     type: 'evening',
-    userid: 'abcde'
+    userid: loggedInUserId
   }
 
   await reportingService.addRecord(entry);

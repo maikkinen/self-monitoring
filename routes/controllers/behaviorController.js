@@ -24,33 +24,55 @@ const validationEvening = {
 };
 
 
-const showLanding = async ({ render }) => {
-  const userid = "abcde"
+const showLanding = async ({ render, session }) => {
+  let loggedInUserId;
+  let loggedInUserEmail;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+    loggedInUserEmail = sessionUser.email
+  } else {
+    return;
+  }
+
   render('index.ejs', {
     data: {
-      today: await getYesterdayAverage(userid),
-      yesterday: await getTodayAverage(userid)
-    }
+      today: await getYesterdayAverage(loggedInUserId),
+      yesterday: await getTodayAverage(loggedInUserId)
+    },
+    loggedInUserEmail: loggedInUserEmail,
   })
 }
 
-const showSummary = async ({ render }) => {
-  const userid = "abcde"
+const showSummary = async ({ render, session }) => {
+  let loggedInUserId;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+  } else {
+    return;
+  }
   render('summary.ejs',
     {
       data:
       {
-        lastWeek: await getLastWeekAverage(userid),
-        lastMonth: await getLastMonthAverage(userid)
+        lastWeek: await getLastWeekAverage(loggedInUserId),
+        lastMonth: await getLastMonthAverage(loggedInUserId)
       }
     })
 }
 
-const showReporting = async ({ render }) => {
-  const userid = "abcde"
+const showReporting = async ({ render, session }) => {
+  let loggedInUserId;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+  } else {
+    return;
+  }
   const data = {
-    morning: await getMorning(userid),
-    evening: await getEvening(userid)
+    morning: await getMorning(loggedInUserId),
+    evening: await getEvening(loggedInUserId)
   }
   render('reporting.ejs',
     {
@@ -59,7 +81,14 @@ const showReporting = async ({ render }) => {
     })
 }
 
-const showMorningForm = async ({ render, request, response }) => {
+const showMorningForm = async ({ render, request, response, session }) => {
+  let loggedInUserId;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+  } else {
+    return;
+  }
 
   if (request.method === 'POST') {
     const body = request.body();
@@ -76,7 +105,7 @@ const showMorningForm = async ({ render, request, response }) => {
       mood: parseInt(params.get('mood')),
       date: params.get('date'),
      
-      userid: 'abcde', // TODO ADD USER ID TO FRONTEND AND HERE
+      userid: loggedInUserId
     }
 
 
@@ -105,7 +134,15 @@ const showMorningForm = async ({ render, request, response }) => {
   }
 }
 
-const showEveningForm = async ({ render, request, response }) => {
+const showEveningForm = async ({ render, request, response, session }) => {
+  let loggedInUserId;
+  const sessionUser = await session.get('user');
+  if(sessionUser) {
+    loggedInUserId = sessionUser.id
+  } else {
+    return;
+  }
+
   if (request.method === 'POST') {
     const body = request.body();
     const params = await body.value;
@@ -122,7 +159,7 @@ const showEveningForm = async ({ render, request, response }) => {
       mood: parseInt(params.get('mood')),
       date: params.get('date'),
      
-      userid: 'abcde', // TODO ADD USER ID TO FRONTEND AND HERE
+      userid: loggedInUserId
     }
 
     if (entry.date === "" || !entry.date) {
@@ -138,8 +175,9 @@ const showEveningForm = async ({ render, request, response }) => {
     
     const [passes, errors] = await validate(entry, validationEvening);
 
-    console.log("entry ", entry);
-    console.log("errors ", errors);
+    // Left here, in case you'd like to see the values in terminal. :)
+    // console.log("entry ", entry);
+    // console.log("errors ", errors);
   
     if (passes) {
       await addRecord(entry);

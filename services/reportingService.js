@@ -23,20 +23,24 @@ const getLastWeekAverage = async (userid) => {
     " ROUND(AVG(sportsduration), 2) as average_sports_duration," +
     " ROUND(AVG(studyingduration), 2) as average_studying_duration," +
     " ROUND(AVG(mood), 2) as average_mood" +
-    " FROM reporting WHERE userid = $1 AND timestamp > current_date - interval '7 days';", userid);
+    " FROM reporting WHERE userid = $1 AND timestamp > now() - interval '90 days';", userid);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
-    console.log("avg things: ", rows)
+    
     const retObject = res.rowsOfObjects()[0]
     if (!retObject.average_sleep_quality || isNaN(retObject.average_sleep_quality) ) {
       retObject.average_sleep_quality = "- no data -"
-    } else if (!retObject.average_sleep_duration || isNaN(retObject.average_sleep_duration) ) {
+    }
+    if (!retObject.average_sleep_duration || isNaN(retObject.average_sleep_duration) ) {
       retObject.average_sleep_duration = "- no data -"
-    } else if (!retObject.average_sports_duration || isNaN(retObject.average_sports_duration) ) {
+    }
+    if (!retObject.average_sports_duration || isNaN(retObject.average_sports_duration) ) {
       retObject.average_sports_duration = "- no data -"
-    } else if (!retObject.average_studying_duration || isNaN(retObject.average_studying_duration) ) {
+    }
+    if (!retObject.average_studying_duration || isNaN(retObject.average_studying_duration) ) {
       retObject.average_studying_duration = "- no data -"
-    } else if (!retObject.average_mood || isNaN(retObject.average_mood) ) {
+    }
+    if (!retObject.average_mood || isNaN(retObject.average_mood) ) {
       retObject.average_mood = "- no data -"
     }
     return retObject;
@@ -58,20 +62,24 @@ const getLastMonthAverage = async (userid) => {
     " ROUND(AVG(sportsduration), 2) as average_sports_duration," +
     " ROUND(AVG(studyingduration), 2) as average_studying_duration," +
     " ROUND(AVG(mood), 2) as average_mood" +
-    " FROM reporting WHERE userid = $1 AND timestamp > current_date - interval '30 days';", userid);
+    " FROM reporting WHERE userid = $1 AND timestamp > now() - interval '30 days';", userid);
     if (res && res.rowCount > 0) {
       const rows = res.rowsOfObjects()[0];
-      console.log("avg things: ", rows)
+      
       const retObject = res.rowsOfObjects()[0]
       if (!retObject.average_sleep_quality || isNaN(retObject.average_sleep_quality) ) {
         retObject.average_sleep_quality = "- no data -"
-      } else if (!retObject.average_sleep_duration || isNaN(retObject.average_sleep_duration) ) {
+      } 
+      if (!retObject.average_sleep_duration || isNaN(retObject.average_sleep_duration) ) {
         retObject.average_sleep_duration = "- no data -"
-      } else if (!retObject.average_sports_duration || isNaN(retObject.average_sports_duration) ) {
+      } 
+      if (!retObject.average_sports_duration || isNaN(retObject.average_sports_duration) ) {
         retObject.average_sports_duration = "- no data -"
-      } else if (!retObject.average_studying_duration || isNaN(retObject.average_studying_duration) ) {
+      } 
+      if (!retObject.average_studying_duration || isNaN(retObject.average_studying_duration) ) {
         retObject.average_studying_duration = "- no data -"
-      } else if (!retObject.average_mood || isNaN(retObject.average_mood) ) {
+      } 
+      if (!retObject.average_mood || isNaN(retObject.average_mood) ) {
         retObject.average_mood = "- no data -"
       }
       return retObject;
@@ -94,7 +102,7 @@ const getYesterdayAverage = async (id) => {
     " AND DATE(timestamp) >= CURRENT_DATE - INTERVAL '1 DAY' ;", id);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
-    console.log("avg things: ", rows)
+    
     return res.rowsOfObjects()[0];
   }
   return {};
@@ -122,7 +130,7 @@ const getMorning = async (id) => {
     " AND DATE(timestamp) >= CURRENT_DATE;", id);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
-    console.log("morning record exists ", rows)
+
     return true;
   }
   return false;
@@ -136,7 +144,7 @@ const getEvening = async (id) => {
     " AND DATE(timestamp) >= CURRENT_DATE;", id);
   if (res && res.rowCount > 0) {
     const rows = res.rowsOfObjects()[0];
-    console.log("evening record exists ", rows)
+
     return true;
   }
   return false;

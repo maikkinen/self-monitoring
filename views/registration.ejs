@@ -8,13 +8,37 @@
   <form method="POST" action="/auth/registration">
     <span>
       <label for="email">Email</label>
-      <input type="email" name="email" />
+      <input type="email" name="email" value="<%= formData.email %>" />
     </span>
+    <% if (errors.email) { %> <% Object.values(errors.email).forEach((err) => { %>
+      <p style="font-size: 0.9rem; opacity: 0.9; margin: 0.5rem 0rem 1rem 0rem">
+        <%= err %>
+      </p>
+      <% }); %> <% } %>
     
     <span>
       <label for="password">Password</label>
-      <input type="password" name="password" />
+      <input type="password" name="password" value="<%= formData.password %>" />
     </span>
+
+    <% if (errors.password) { %> <% Object.values(errors.password).forEach((err) => { %>
+      <p style="font-size: 0.9rem; opacity: 0.9; margin: 0.5rem 0rem 1rem 0rem">
+        <%= err %>
+      </p>
+      <% }); %> <% } %>
+
+    <span>
+      <label for="verification">Repeat password</label>
+      <input type="password" name="verification" value="<%= formData.verification %>" />
+    </span>
+
+    <% if (frontendErrors && frontendErrors.length > 0) { %>
+      <ul>
+        <% frontendErrors.forEach((error) => { %>
+          <li><%= error %></li>
+        <% }); %>
+      </ul>
+      <% } %>
 
     <input type="submit" value="Submit" />
   </form>
