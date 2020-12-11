@@ -139,7 +139,8 @@ VALUES (1, '2020-11-20', 'evening', null, null, 5, 1, 6, 4);
 
 
 INSERT INTO reporting(userid, timestamp, type, sleepDuration, sleepQuality, mood, sportsDuration, studyingDuration, eatingQuality) 
-- VALUES (1, '2020-11-25', 'evening', null, null, 5, 1, 7, 4);
+VALUES (1, '2020-11-25', 'evening', null, null, 5, 1, 7, 4);
+
 - VALUES (1, '2020-11-26', 'evening', null, null, 4, 0, 9, 3);
 - VALUES (1, '2020-11-27', 'evening', null, null, 3, 1, 8, 3);
 - VALUES (1, '2020-11-28', 'evening', null, null, 5, 0, 8.7, 2);
